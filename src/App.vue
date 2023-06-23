@@ -1,8 +1,12 @@
-<script setup></script>
+<script setup>
+import GradesForm from './components/GradesForm.vue'
+import GradesList from './components/GradesList.vue'
+</script>
 
 <template>
   <header>
-    <div>Hello World</div>
+    <GradesForm />
+    <GradesList />
   </header>
 </template>
 
