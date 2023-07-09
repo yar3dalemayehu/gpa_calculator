@@ -52,7 +52,7 @@ function clearTable(event) {
         <input
           type="radio"
           id="useNumericGrade"
-          name="fav_language"
+          name="grde_type"
           :value="true"
           v-model="useNumeric"
           checked
@@ -61,7 +61,7 @@ function clearTable(event) {
         <input
           type="radio"
           id="useLetterGrade"
-          name="fav_language"
+          name="grde_type"
           :value="false"
           v-model="useNumeric"
         />
