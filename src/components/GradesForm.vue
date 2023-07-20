@@ -11,9 +11,25 @@ const initialData = {
   letterGrade: null
 }
 
+const errors = {
+  invalid: 'Invalid value',
+  required: 'Required',
+  noCourses: 'At least one course needed',
+  above100: "Value can't exceed 100",
+  below0: "Value can't be below 0"
+}
+
+const noErrors = {
+  course: null,
+  grade: null,
+  credit: null
+}
+
+const formErrors = ref({ ...noErrors })
+
 const formData = ref({ ...initialData })
 const useNumeric = ref(true)
-const noOfCourses = ref(0)
+const noOfCourses = ref(1)
 
 function resetFormData() {
   formData.value = { ...initialData }
@@ -21,6 +37,9 @@ function resetFormData() {
 
 function addCourse(event) {
   event.preventDefault()
+
+  if (!validateForm()) return
+
   if (useNumeric.value) {
     formData.value.letterGrade = getNumericGrade(formData.value.numericGrade)
   }
@@ -32,6 +51,13 @@ function addCourse(event) {
 function clearTable(event) {
   event.preventDefault()
   emit('clear')
+}
+
+function validateForm() {
+  if (noOfCourses.value === 0) {
+    formErrors.value.course = errors.noCourses
+    return false
+  }
 }
 </script>
 
@@ -46,6 +72,7 @@ function clearTable(event) {
         min="0"
         placeholder="Number of Courses"
       />
+      <div v-if="formErrors.course">{{ formErrors.course }}</div>
     </div>
     <div>
       <div>
