@@ -25,7 +25,7 @@ function onCalculate() {
           <th>{{ course.courseName ?? '-' }}</th>
           <th>{{ course.credit }}</th>
           <th>{{ course.numericGrade ?? '-' }}</th>
-          <th>{{ course.letterGrade }}</th>
+          <th>{{ course.letterGrade.toUpperCase() }}</th>
         </tr>
       </table>
     </div>

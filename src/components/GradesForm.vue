@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { getNumericGrade } from '../services/convertGrades'
-
+import { grade_weights } from '../services/calculateGrade'
 const emit = defineEmits(['add', 'clear'])
 
 const initialData = {
@@ -33,6 +33,7 @@ const noOfCourses = ref(1)
 
 function resetFormData() {
   formData.value = { ...initialData }
+  formErrors.value = { ...noErrors }
 }
 
 function addCourse(event) {
@@ -50,14 +51,54 @@ function addCourse(event) {
 
 function clearTable(event) {
   event.preventDefault()
+  formErrors.value = { ...noErrors }
   emit('clear')
 }
 
 function validateForm() {
-  if (noOfCourses.value === 0) {
+  // no of courses validation
+  if (!noOfCourses.value || noOfCourses.value === 0) {
     formErrors.value.course = errors.noCourses
     return false
   }
+  formErrors.value.course = null
+
+  // numeric grade validation
+  if (useNumeric.value) {
+    if (!formData.value.numericGrade) {
+      formErrors.value.grade = errors.required
+      return false
+    } else if (formData.value.numericGrade < 0) {
+      formErrors.value.grade = errors.below0
+      return false
+    } else if (formData.value.numericGrade > 100) {
+      formErrors.value.grade = errors.above100
+      return false
+    }
+  } else {
+    // letter grade validation
+    if (!formData.value.letterGrade) {
+      formErrors.value.grade = errors.required
+      return false
+    }
+    let value = formData.value.letterGrade.toUpperCase()
+    if (!grade_weights[value]) {
+      formErrors.value.grade = errors.invalid
+      return false
+    }
+  }
+  formErrors.value.grade = null
+
+  if (!formData.value.credit) {
+    formErrors.value.credit = errors.required
+    return false
+  } else if (formData.value.credit < 0) {
+    formErrors.value.credit = errors.below0
+    return false
+  }
+  formErrors.value.credit = null
+
+  return true
 }
 </script>
 
@@ -105,6 +146,7 @@ function validateForm() {
               min="0"
               max="100"
             />
+            <div v-if="formErrors.grade">{{ formErrors.grade }}</div>
           </div>
           <div v-else>
             <label>Letter Grade</label>
@@ -115,10 +157,12 @@ function validateForm() {
               minlength="1"
               maxlength="2"
             />
+            <div v-if="formErrors.grade">{{ formErrors.grade }}</div>
           </div>
           <div>
             <label>Credit</label>
             <input v-model="formData.credit" type="number" id="credit" min="0" />
+            <div v-if="formErrors.credit">{{ formErrors.credit }}</div>
           </div>
           <div>
             <label>Course Name</label>
