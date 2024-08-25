@@ -21,13 +21,13 @@ function onSetGPA(gpa) {
 </script>
 
 <template>
-  <header>
-    <div class="flex">
+  <div class="flex column full card-gap">
+    <div class="flex card-gap">
       <GradesForm class="flex-2" @add="onCourseAdd" @clear="clearTable" />
       <GradeDisplay class="flex-1" :GPA="GPA" />
     </div>
     <GradesList :courses="courses" @setGPA="onSetGPA" />
-  </header>
+  </div>
 </template>
 
 <style scoped>

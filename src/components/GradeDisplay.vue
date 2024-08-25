@@ -1,9 +1,9 @@
 <script setup>
-const props = defineProps(['GPA'])
+defineProps(['GPA'])
 </script>
 
 <template>
-  <div>
-    <h1>{{ GPA }}</h1>
+  <div class="card flex">
+    <h1 class="grade">{{ GPA }}</h1>
   </div>
 </template>

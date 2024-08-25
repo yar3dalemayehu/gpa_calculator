@@ -10,22 +10,30 @@ function onCalculate() {
 </script>
 
 <template>
-  <div>
-    <h1>Table</h1>
-    <button @click="onCalculate">Caclulate</button>
+  <div class="card">
+    <div class="title-container">
+      <h1 class="title">Grade List</h1>
+      <div><button @click="onCalculate">Caclulate</button></div>
+    </div>
     <div>
-      <table>
+      <table class="grade-table" cellspacing="0">
         <tr>
+          <th>#</th>
           <th>Course Name</th>
           <th>Credit</th>
           <th>Numeric Grade</th>
           <th>Letter Grade</th>
         </tr>
-        <tr v-for="course of courses">
-          <th>{{ course.courseName ?? '-' }}</th>
-          <th>{{ course.credit }}</th>
-          <th>{{ course.numericGrade ?? '-' }}</th>
-          <th>{{ course.letterGrade.toUpperCase() }}</th>
+        <tr v-for="(course, i) of courses" :key="i">
+          <td>{{ i }}</td>
+          <td>{{ course.courseName ?? '-' }}</td>
+          <td>{{ course.credit }}</td>
+          <td>{{ course.numericGrade ?? '-' }}</td>
+          <td>{{ course.letterGrade.toUpperCase() }}</td>
+        </tr>
+
+        <tr v-if="courses.length === 0" class="no-courses-text">
+          <td colspan="5" align="center">No Courses Found</td>
         </tr>
       </table>
     </div>

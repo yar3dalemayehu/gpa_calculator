@@ -103,73 +103,94 @@ function validateForm() {
 </script>
 
 <template>
-  <div>
-    <div>
+  <div class="card flex column form-gap">
+    <div class="form-input column">
       <label for="noOfCourses">How Many Courses are there in the semester</label>
-      <input
-        v-model="noOfCourses"
-        id="noOfCourses"
-        type="number"
-        min="0"
-        placeholder="Number of Courses"
-      />
-      <div v-if="formErrors.course">{{ formErrors.course }}</div>
-    </div>
-    <div>
       <div>
         <input
-          type="radio"
-          id="useNumericGrade"
-          name="grde_type"
-          :value="true"
-          v-model="useNumeric"
-          checked
+          v-model="noOfCourses"
+          id="noOfCourses"
+          type="number"
+          min="0"
+          placeholder="Number of Courses"
         />
-        <label for="useNumericGrade">Numeric Grade</label><br />
-        <input
-          type="radio"
-          id="useLetterGrade"
-          name="grde_type"
-          :value="false"
-          v-model="useNumeric"
-        />
-        <label for="useLetterGrade">Letter Grade</label><br />
+        <div class="error" :class="{ invisible: !formErrors.course }">{{ formErrors.course }}</div>
       </div>
-      <form>
-        <div>
-          <div v-if="useNumeric">
-            <label>Numeric Grade(from 100%)</label>
-            <input
-              v-model="formData.numericGrade"
-              type="number"
-              id="numericGrade"
-              min="0"
-              max="100"
-            />
-            <div v-if="formErrors.grade">{{ formErrors.grade }}</div>
+    </div>
+    <div class="flex column form-gap">
+      <div class="flex form-gap flex-wrap">
+        <div class="flex form-gap width-auto">
+          <input
+            type="radio"
+            id="useNumericGrade"
+            name="grade_type"
+            :value="true"
+            v-model="useNumeric"
+            checked
+          />
+          <label for="useNumericGrade">Numeric Grade</label><br />
+        </div>
+        <div class="flex form-gap width-auto">
+          <input
+            type="radio"
+            id="useLetterGrade"
+            name="grade_type"
+            :value="false"
+            v-model="useNumeric"
+          />
+          <label for="useLetterGrade">Letter Grade</label><br />
+        </div>
+      </div>
+      <form class="card-gap flex column">
+        <div class="form-gap flex flex-wrap">
+          <div class="form-input column" v-if="useNumeric">
+            <label for="numericGrade">Numeric Grade(from 100%)</label>
+            <div>
+              <input
+                v-model="formData.numericGrade"
+                type="number"
+                id="numericGrade"
+                min="0"
+                max="100"
+              />
+              <div class="error" :class="{ invisible: !formErrors.grade }">
+                {{ formErrors.grade }}
+              </div>
+            </div>
           </div>
-          <div v-else>
-            <label>Letter Grade</label>
-            <input
-              v-model="formData.letterGrade"
-              type="text"
-              id="letterGrade"
-              minlength="1"
-              maxlength="2"
-            />
-            <div v-if="formErrors.grade">{{ formErrors.grade }}</div>
+          <div class="form-input column" v-else>
+            <label for="letterGrade">Letter Grade</label>
+            <div>
+              <input
+                v-model="formData.letterGrade"
+                type="text"
+                id="letterGrade"
+                minlength="1"
+                maxlength="2"
+              />
+              <div class="error" :class="{ invisible: !formErrors.grade }">
+                {{ formErrors.grade }}
+              </div>
+            </div>
           </div>
-          <div>
-            <label>Credit</label>
-            <input v-model="formData.credit" type="number" id="credit" min="0" />
-            <div v-if="formErrors.credit">{{ formErrors.credit }}</div>
+          <div class="form-input column">
+            <label for="credit">Credit</label>
+            <div>
+              <input v-model="formData.credit" type="number" id="credit" min="0" />
+              <div class="error" :class="{ invisible: !formErrors.credit }">
+                {{ formErrors.credit }}
+              </div>
+            </div>
           </div>
-          <div>
-            <label>Course Name</label>
-            <input v-model="formData.courseName" type="text" id="courseName" />
+          <div class="form-input column">
+            <label for="courseName">Course Name</label>
+            <div>
+              <input v-model="formData.courseName" type="text" id="courseName" />
+              <div class="error invisible"></div>
+            </div>
           </div>
         </div>
-        <div>
+        <div class="flex form-gap">
           <button type="submit" v-on:click="addCourse">Add</button>
           <button type="reset" v-on:click="resetFormData()">Clear Form</button>
           <button v-on:click="clearTable">Clear Table</button>
