@@ -1,47 +1,45 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import GradesForm from './components/GradesForm.vue'
+import GradesList from './components/GradesList.vue'
+import GradeDisplay from './components/GradeDisplay.vue'
+import { ref } from 'vue'
+
+const courses = ref([])
+const GPA = ref((0).toFixed(2))
+
+function onCourseAdd(newCourse) {
+  courses.value.push(newCourse)
+}
+
+function clearTable() {
+  courses.value = []
+}
+
+function onSetGPA(gpa) {
+  GPA.value = gpa.toFixed(2)
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div class="flex column card-gap container">
+    <div class="card-gap grid grid-2-1">
+      <GradesForm class="flex-2" @add="onCourseAdd" @clear="clearTable" />
+      <GradeDisplay class="flex-1" :GPA="GPA" />
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <GradesList :courses="courses" @setGPA="onSetGPA" />
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+.flex {
+  display: flex;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.flex-1 {
+  flex-grow: 1;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.flex-2 {
+  flex-grow: 2;
 }
 </style>
