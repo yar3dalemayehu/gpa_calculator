@@ -1,3 +1,5 @@
+import { Course } from '../types/course'
+
 export const grade_weights = {
   F: 0,
   FX: 0,
@@ -13,17 +15,21 @@ export const grade_weights = {
   'A+': 4
 }
 
-export function calculateGrade(gradeList: any[]) {
-  // TODO: handle f, fx and invalid cases
-
+export function calculateGrade(gradeList: Course[]) {
   let total_grade = 0
   let credit_sum = 0
-  gradeList.forEach((ele) => {
-    credit_sum += ele.credit
-    let subject_weight = grade_weights[ele.letterGrade] * ele.credit
-    total_grade += subject_weight
+
+  for (const grade of gradeList) {
     // fail if letter grade is F or FX
-  })
+    if (grade.letterGrade.toLowerCase() === 'f' || grade.letterGrade.toLowerCase() === 'fx') {
+      // return a negative number to indicate fail
+      return -1
+    }
+
+    credit_sum += grade.credit
+    let subject_weight = grade_weights[grade.letterGrade] * grade.credit
+    total_grade += subject_weight
+  }
 
   if (!credit_sum) return 0
 

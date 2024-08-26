@@ -72,7 +72,7 @@ function validateForm() {
       return false
     }
     let value = formData.value.letterGrade.toUpperCase()
-    if (!grade_weights[value]) {
+    if (grade_weights[value] === undefined) {
       formErrors.value.grade = errors.invalid
       return false
     }

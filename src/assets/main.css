@@ -40,6 +40,10 @@
   justify-content: center;
 }
 
+.flex-grow {
+  flex-grow: 1;
+}
+
 .card-gap {
   gap: 20px;
 }
@@ -160,9 +164,26 @@ button:hover {
   color: var(--vt-c-text-dark-1);
 }
 
+.grade-display-title {
+  color: var(--vt-c-text-title);
+}
+
 .grade {
   font-size: 5rem;
   color: var(--vt-c-text-title-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.fail-message {
+  font-size: 3rem;
+  color: var(--vt-c-text-error);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .table-container {
@@ -202,15 +223,15 @@ button:hover {
 footer {
   width: 100%;
   background-color: var(--vt-c-black);
-  padding: .4rem;
+  padding: 0.4rem;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.footer-divider{
-  padding: 0 .6rem;
+.footer-divider {
+  padding: 0 0.6rem;
 }
 
 .github-icon {
