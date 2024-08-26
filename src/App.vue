@@ -34,11 +34,8 @@ function onSetGPA(gpa) {
   <footer>
     <span>{{ new Date().getFullYear() }}</span>
     <span class="footer-divider">|</span>
-    <span class="github-icon">
-      <svg
-        viewBox="0 -3.5 256 256"
-        width="20"
-      >
+    <a class="github-icon" href="https://github.com/aaabrsh/grade-calculator" target="_blank">
+      <svg viewBox="0 -3.5 256 256" width="20">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
         <g id="SVGRepo_iconCarrier">
@@ -52,7 +49,7 @@ function onSetGPA(gpa) {
           </g>
         </g>
       </svg>
-    </span>
+    </a>
   </footer>
 </template>
 
