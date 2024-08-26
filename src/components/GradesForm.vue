@@ -14,13 +14,11 @@ const initialData = {
 const errors = {
   invalid: 'Invalid value',
   required: 'Required',
-  noCourses: 'At least one course needed',
   above100: "Value can't exceed 100",
   below0: "Value can't be below 0"
 }
 
 const noErrors = {
-  course: null,
   grade: null,
   credit: null
 }
@@ -29,7 +27,6 @@ const formErrors = ref({ ...noErrors })
 
 const formData = ref({ ...initialData })
 const useNumeric = ref(true)
-const noOfCourses = ref(1)
 
 function resetFormData() {
   formData.value = { ...initialData }
@@ -57,11 +54,6 @@ function clearTable(event) {
 
 function validateForm() {
   // no of courses validation
-  if (!noOfCourses.value || noOfCourses.value === 0) {
-    formErrors.value.course = errors.noCourses
-    return false
-  }
-  formErrors.value.course = null
 
   // numeric grade validation
   if (useNumeric.value) {
@@ -104,19 +96,6 @@ function validateForm() {
 
 <template>
   <div class="card flex column form-gap">
-    <div class="form-input column">
-      <label for="noOfCourses">How Many Courses are there in the semester</label>
-      <div>
-        <input
-          v-model="noOfCourses"
-          id="noOfCourses"
-          type="number"
-          min="0"
-          placeholder="Number of Courses"
-        />
-        <div class="error" :class="{ invisible: !formErrors.course }">{{ formErrors.course }}</div>
-      </div>
-    </div>
     <div class="flex column form-gap">
       <div class="flex form-gap flex-wrap">
         <div class="flex form-gap width-auto">
@@ -144,7 +123,7 @@ function validateForm() {
       <form class="card-gap flex column">
         <div class="form-gap flex flex-wrap">
           <div class="form-input column" v-if="useNumeric">
-            <label for="numericGrade">Numeric Grade(from 100%)</label>
+            <label for="numericGrade">Numeric Grade (from 100%)</label>
             <div>
               <input
                 v-model="formData.numericGrade"
@@ -183,14 +162,14 @@ function validateForm() {
             </div>
           </div>
           <div class="form-input column">
-            <label for="courseName">Course Name</label>
+            <label for="courseName">Course Name (optional)</label>
             <div>
               <input v-model="formData.courseName" type="text" id="courseName" />
               <div class="error invisible"></div>
             </div>
           </div>
         </div>
-        <div class="flex form-gap">
+        <div class="flex form-gap flex-wrap">
           <button type="submit" v-on:click="addCourse">Add</button>
           <button type="reset" v-on:click="resetFormData()">Clear Form</button>
           <button v-on:click="clearTable">Clear Table</button>
