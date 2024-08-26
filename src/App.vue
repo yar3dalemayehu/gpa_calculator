@@ -22,6 +22,9 @@ function onSetGPA(gpa) {
 
 <template>
   <div class="flex column card-gap container">
+    <div>
+      <h1 class="main-title">Grade Calculator</h1>
+    </div>
     <div class="card-gap grid grid-2-1">
       <GradesForm class="flex-2" @add="onCourseAdd" @clear="clearTable" />
       <GradeDisplay class="flex-1" :GPA="GPA" />

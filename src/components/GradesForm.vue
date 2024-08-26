@@ -53,8 +53,6 @@ function clearTable(event) {
 }
 
 function validateForm() {
-  // no of courses validation
-
   // numeric grade validation
   if (useNumeric.value) {
     if (!formData.value.numericGrade) {

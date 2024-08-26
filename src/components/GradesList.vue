@@ -11,7 +11,7 @@ function onCalculate() {
 
 <template>
   <div class="card">
-    <div class="title-container">
+    <div class="title-container flex-wrap">
       <h1 class="title">Grade List</h1>
       <div><button @click="onCalculate">Caclulate</button></div>
     </div>
