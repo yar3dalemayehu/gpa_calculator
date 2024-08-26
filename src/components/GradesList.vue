@@ -15,7 +15,7 @@ function onCalculate() {
       <h1 class="title">Grade List</h1>
       <div><button @click="onCalculate">Caclulate</button></div>
     </div>
-    <div>
+    <div class="table-container">
       <table class="grade-table" cellspacing="0">
         <tr>
           <th>#</th>

@@ -5,7 +5,7 @@ import GradeDisplay from './components/GradeDisplay.vue'
 import { ref } from 'vue'
 
 const courses = ref([])
-const GPA = ref(0)
+const GPA = ref((0).toFixed(2))
 
 function onCourseAdd(newCourse) {
   courses.value.push(newCourse)
@@ -21,8 +21,8 @@ function onSetGPA(gpa) {
 </script>
 
 <template>
-  <div class="flex column full card-gap container">
-    <div class="flex card-gap">
+  <div class="flex column card-gap container">
+    <div class="card-gap grid grid-2-1">
       <GradesForm class="flex-2" @add="onCourseAdd" @clear="clearTable" />
       <GradeDisplay class="flex-1" :GPA="GPA" />
     </div>

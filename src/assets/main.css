@@ -1,27 +1,30 @@
 @import './base.css';
 
 #app {
-  margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
   height: 100vh;
   overflow: auto;
 }
 
 .container {
+  margin: 0 auto;
   max-width: 1280px;
+  padding: 2rem;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+.grid {
+  width: 100%;
+  display: grid;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+.grid-2-1 {
+  grid-template-columns: 2fr 1fr;
+}
+
+@media only screen and (max-width: 650px) {
+  .grid {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -60,10 +63,6 @@ a,
   flex-direction: column;
 }
 
-.full {
-  height: 100%;
-}
-
 .title-container {
   border-image: linear-gradient(
       to right,
@@ -78,6 +77,7 @@ a,
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .title {
@@ -147,8 +147,14 @@ button:hover {
   color: var(--vt-c-text-title-2);
 }
 
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .grade-table {
   width: 100%;
+  min-width: 500px;
   border: 1px solid var(--vt-c-black-mute);
 }
 

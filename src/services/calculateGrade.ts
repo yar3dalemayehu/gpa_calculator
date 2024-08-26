@@ -25,6 +25,8 @@ export function calculateGrade(gradeList: any[]) {
     // fail if letter grade is F or FX
   })
 
+  if (!credit_sum) return 0
+
   const GPA = total_grade / credit_sum
 
   return GPA
