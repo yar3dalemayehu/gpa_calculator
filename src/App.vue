@@ -23,7 +23,7 @@ function onSetGPA(gpa) {
 <template>
   <div class="flex column card-gap container">
     <div>
-      <h1 class="main-title">Grade Calculator</h1>
+      <h1 class="main-title">GPA Calculator</h1>
     </div>
     <div class="card-gap grid grid-2-1">
       <GradesForm class="flex-2" @add="onCourseAdd" @clear="clearTable" />
@@ -34,7 +34,7 @@ function onSetGPA(gpa) {
   <footer>
     <span>{{ new Date().getFullYear() }}</span>
     <span class="footer-divider">|</span>
-    <a class="github-icon" href="https://github.com/aaabrsh/grade-calculator" target="_blank">
+    <a class="github-icon" href="https://github.com/yar3dalemayehu/gpa_calculator" target="_blank">
       <svg viewBox="0 -3.5 256 256" width="20">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
