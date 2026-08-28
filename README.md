@@ -25,4 +25,4 @@ This is a simple GPA calculator web application built using Vue.js. The app allo
 
 ## Demo
 
-You can find a live demo of this app [here](https://grade-calculator-app.vercel.app/).
+You can find a live demo of this app [here](https://jj-gpa-calculator.vercel.app/).
