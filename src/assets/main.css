@@ -240,6 +240,20 @@ footer {
   justify-content: center;
   align-items: center;
 }
+.telegram-icon {
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+.instagram-icon {
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
 
 @media only screen and (max-width: 650px) {
   .grid {

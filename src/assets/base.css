@@ -21,9 +21,9 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
-  --vt-c-text-title: #20d691;
-  --vt-c-text-title-2: #3acfd5;
-  --vt-c-text-error: #ff6060;
+  --vt-c-text-title: #2093d6;
+  --vt-c-text-title-2: #b9d53a;
+  --vt-c-text-error: #f54545;
 }
 
 /* semantic color variables for this project */
