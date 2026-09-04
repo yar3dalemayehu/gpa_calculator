@@ -28,6 +28,8 @@ const formErrors = ref({ ...noErrors })
 const formData = ref({ ...initialData })
 const useNumeric = ref(true)
 
+const letterGrades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'FX', 'F']
+
 function resetFormData() {
   formData.value = { ...initialData }
   formErrors.value = { ...noErrors }
@@ -140,13 +142,12 @@ function validateForm() {
           <div class="form-input column" v-else>
             <label for="letterGrade">Letter Grade</label>
             <div>
-              <input
-                v-model="formData.letterGrade"
-                type="text"
-                id="letterGrade"
-                minlength="1"
-                maxlength="2"
-              />
+              <select v-model="formData.letterGrade" id="letterGrade">
+                <option disabled value="">Select grade</option>
+                <option v-for="grade in letterGrades" :key="grade" :value="grade">
+                  {{ grade }}
+                </option>
+              </select>
               <div class="error" :class="{ invisible: !formErrors.grade }">
                 {{ formErrors.grade }}
               </div>
