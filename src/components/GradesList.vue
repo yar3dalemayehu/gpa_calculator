@@ -2,10 +2,14 @@
 import { calculateGrade } from '../services/calculateGrade'
 
 const props = defineProps(['courses'])
-const emit = defineEmits(['setGPA'])
+const emit = defineEmits(['setGPA', 'remove'])
 
 function onCalculate() {
   emit('setGPA', calculateGrade(props.courses))
+}
+
+function onRemove(index) {
+  emit('remove', index)
 }
 </script>
 
@@ -23,6 +27,7 @@ function onCalculate() {
           <th>Credit</th>
           <th>Numeric Grade</th>
           <th>Letter Grade</th>
+          <th></th>
         </tr>
         <tr v-for="(course, i) of courses" :key="i">
           <td>{{ i }}</td>
@@ -30,10 +35,11 @@ function onCalculate() {
           <td>{{ course.credit }}</td>
           <td>{{ course.numericGrade ?? '-' }}</td>
           <td>{{ course.letterGrade.toUpperCase() }}</td>
+          <td><button type="button" @click="onRemove(i)" aria-label="Delete course">✕</button></td>
         </tr>
 
         <tr v-if="courses.length === 0" class="no-courses-text">
-          <td colspan="5" align="center">No Courses Found</td>
+          <td colspan="6" align="center">No Courses Found</td>
         </tr>
       </table>
     </div>
