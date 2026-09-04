@@ -11,6 +11,10 @@ function onCourseAdd(newCourse) {
   courses.value.push(newCourse)
 }
 
+function onCourseRemove(index) {
+  courses.value.splice(index, 1)
+}
+
 function clearTable() {
   courses.value = []
 }
@@ -29,7 +33,7 @@ function onSetGPA(gpa) {
       <GradesForm class="flex-2" @add="onCourseAdd" @clear="clearTable" />
       <GradeDisplay class="flex-1" :GPA="GPA" />
     </div>
-    <GradesList :courses="courses" @setGPA="onSetGPA" />
+    <GradesList :courses="courses" @setGPA="onSetGPA" @remove="onCourseRemove" />
   </div>
   <footer>
     <span>{{ new Date().getFullYear() }}</span>
