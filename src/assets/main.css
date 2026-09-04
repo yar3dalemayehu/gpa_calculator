@@ -115,7 +115,8 @@
   align-items: center;
 }
 
-.form-input input {
+.form-input input,
+.form-input select {
   width: 210px;
   padding: 7px;
   background-color: var(--vt-c-black-mute);
@@ -124,7 +125,8 @@
   border-radius: 5px;
 }
 
-.form-input input:focus {
+.form-input input:focus,
+.form-input select:focus {
   outline: 2px solid var(--vt-c-text-title);
 }
 
