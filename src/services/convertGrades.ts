@@ -21,11 +21,11 @@ export function getNumericGrade(grade: number): string {
     return 'B'
   } else if (grade >= 75 && grade < 80) {
     return 'B+'
-  } else if (grade >= 80 && grade < 83) {
+  } else if (grade >= 80 && grade < 85) {
     return 'A-'
-  } else if (grade >= 83 && grade < 90) {
+  } else if (grade >= 85 && grade < 90) {
     return 'A'
-  } else {
+  } else if (grade >= 90 && grade <= 100) {
     return 'A+'
   }
 }
