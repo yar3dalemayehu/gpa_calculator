@@ -40,7 +40,8 @@ function addCourse(event) {
 
   if (useNumeric.value) {
     formData.value.letterGrade = getNumericGrade(formData.value.numericGrade)
-  }
+  } else {
+    formData.value.letterGrade = formData.value.letterGrade.toUpperCase()
   const data = { ...formData.value }
   emit('add', data)
   resetFormData()
